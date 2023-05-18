@@ -1,6 +1,7 @@
 import React from "react";
 import SideNavbar from "./SideNavbar";
 import UserReadsTable from "./UserReadsTable";
+import PaginationComponent from "../shared/PaginationComponent";
 
 function BodyContainer() {
   return (
@@ -13,11 +14,14 @@ function BodyContainer() {
           </div>
           <div class="col-md-10 ">
             <div class="container">
-              <fieldset class="border rounded-3 p-3">
+              <fieldset class="border rounded-3">
                 <legend class="float-none w-auto px-3">
                   Currently Reading
                 </legend>
                 <UserReadsTable></UserReadsTable>
+                <div className="d-flex justify-content-center align-items-center">
+                  <PaginationComponent></PaginationComponent>
+                </div>
               </fieldset>
             </div>
           </div>
