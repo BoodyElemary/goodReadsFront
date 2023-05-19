@@ -2,6 +2,10 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 function Topbar() {
+
+if (window.location.pathname==="/")
+ return null
+ else 
   return (
     <header className="container-fluid bg-dark text-light px-0 ">
       {/* <div className="row gx-0  d-lg-flex">

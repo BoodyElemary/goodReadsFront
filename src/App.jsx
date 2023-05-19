@@ -6,15 +6,18 @@ import UserHome from './components/pages/UserHome';
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SingleBook from './components/pages/SingleBook';
+import Home from './components/pages/Home';
 
 function App() {
   return (
     <div className="App">
-      <Topbar></Topbar>
-      <Header></Header>
       <BrowserRouter>
+      { }
+        <Topbar/>
+        <Header/>
         <Routes>
-          <Route path="/" Component={UserHome}></Route>
+          <Route path="/" Component={Home}></Route>
+          <Route path="/home" Component={UserHome}></Route>
           <Route path="/book" Component={SingleBook}></Route>
         </Routes>
       </BrowserRouter>
