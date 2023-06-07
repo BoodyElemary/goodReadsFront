@@ -22,7 +22,7 @@ function Topbar() {
 
     fetchUserProfile();
   }, []);
-  if (location.pathname === '/') {
+  if (location.pathname === '/' || location.pathname === '/') {
     return null;
   } else {
     return (

@@ -69,7 +69,7 @@ export default function AdminHome() {
   return (
     <div className=" container pt-3 w-50 mt-5" >
        <Form noValidate validated={validated} onSubmit={handleSubmit} style={style.border}>
-       <div style={style.header} className='mt-2 mb-4'> <legend>Admin Login</legend> </div>
+       <div style={style.header} className='mt-2 mb-4'> <legend>Welcome To Admin Panel</legend> </div>
 
       <Row className="mb-3">
         <Row>

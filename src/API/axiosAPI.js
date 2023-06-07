@@ -42,13 +42,13 @@ const addCategory = (catigory) =>
     headers: { Authorization: localStorage.getItem('adminToken') },
   });
 const getCategoryByID = (CategoryID) =>
-  axios.get(`${back_Url}/Categoriess/${CategoryID}`);
+  axios.get(`${back_Url}/Categories/${CategoryID}`);
 const editCategoryByID = (CategoryID, editData) =>
-  axios.put(`${back_Url}/Categoriess/${CategoryID}`, editData, {
+  axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {
     headers: { Authorization: localStorage.getItem('adminToken') },
   });
 const deleteCategoryByID = (CategoryID) =>
-  axios.delete(`${back_Url}/Categoriess/${CategoryID}`, {
+  axios.delete(`${back_Url}/Categories/${CategoryID}`, {
     headers: { Authorization: localStorage.getItem('adminToken') },
   });
 
