@@ -4,8 +4,27 @@ import PopularAuthors from '../layout/PopularAuthors';
 import PopularBooks from '../layout/PopularBooks';
 import SignUp from '../layout/SignUp';
 import LogIn from '../layout/LogIn';
+import { useNavigate, useParams } from "react-router-dom";
+import { AppAPI } from "../../API/axiosAPI";
+
+
 
 export default function Home() {
+
+
+
+const userProfile = async()=>{
+  try{
+    const response = await AppAPI.getUserProfile();
+
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+
+
   return (
     <div className="container d-flex">
       <div className="col-8">

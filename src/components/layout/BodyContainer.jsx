@@ -6,16 +6,16 @@ import PaginationComponent from "../shared/PaginationComponent";
 function BodyContainer() {
   return (
     <div>
-      <div class="container-fluid min-vh-100 d-flex flex-column">
-        <div class="row"></div>
-        <div class="row flex-grow-1 mt-2">
-          <div class="col-md-2  ">
+      <div className="container-fluid min-vh-100 d-flex flex-column">
+        <div className="row"></div>
+        <div className="row flex-grow-1 mt-2">
+          <div className="col-md-2  ">
             <SideNavbar></SideNavbar>
           </div>
-          <div class="col-md-10 ">
-            <div class="container">
-              <fieldset class="border rounded-3">
-                <legend class="float-none w-auto px-3">
+          <div className="col-md-10 ">
+            <div className="container">
+              <fieldset className="border rounded-3">
+                <legend className="float-none w-auto px-3">
                   Currently Reading
                 </legend>
                 <UserReadsTable></UserReadsTable>
