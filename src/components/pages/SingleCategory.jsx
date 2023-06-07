@@ -8,7 +8,6 @@ export default function SingleCategory() {
 
     let [category,setCategory]=useState({categoryName:"",books:[]});
     const { id } = useParams();
-    const backUrl='http://localhost:5000';
     const getCategoryById = async () => {
       let response = await AppAPI.getCategoryByID(id);
       setCategory(response.data.data);
@@ -20,28 +19,34 @@ export default function SingleCategory() {
 
 
   return (
-    <div>
+    <div className='col-12 container'>
           
-    <div>
-        <h1>{category.categoryName}</h1>
+    <div className=' my-3 wrap w-25 '>
+    <h1 className='d-flex' > {category.categoryName}</h1>
     </div>
-   <Card className="text-center m-1" style={{ width: '100%', border:"4px solid lightblue", borderRadius:"15px" , padding:"20px"}} >
+ <div className="text-center my-1  d-flex flex-wrap justify-content-around gap-3 overflow-hidden " style={{ padding:"10px" ,position:"relative" }} >
        {category.books.map((book, index) => {
   return (
-    <div key={book._id} className="border border-primary rounded p-5 w-25 m-2">
-        <div>
-            {/* <img src={backUrl}{book.cover} alt="BookCover" /> */}
+  
+
+    <Card key={book._id} className="border border-primary rounded p-4 w-25 m-1  gap-2 right-1 overflow-hidden wrap" style={{left:"-7",position:"relative"}}>
+        <div  className='w-75 h-75'>
+       
+            <img src= {`${AppAPI.back_Url}/${book.cover}`}alt="BookCover" className='w-100 h-100' style={{objectFit:'contain'}}  />
         </div>
-      <h2>{book.bookName}</h2>
-      <h2>{book.author.firstName}</h2>
-    </div>
+      <h2 className='border rounded m-3   '>{book.bookName}</h2>
+      <h2  className='border rounded m-3  '>{book.author.firstName}</h2>
+    </Card>
+  
   );
+  
 })}
 
       
-    </Card>
  
-    </div>
+</div>
+</div>
 
   )
+
 }
