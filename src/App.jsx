@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SingleBook from './components/pages/SingleBook';
 import Home from './components/pages/Home';
 import AdminHome from './components/pages/admin/AdminHome';
+import AdminLogin from './components/pages/admin/AdminLogin';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" Component={UserHome}></Route>
           <Route path="/book" Component={SingleBook}></Route>
           <Route path="/admin" Component={AdminHome}></Route>
+          <Route path="/admin/login" Component={AdminLogin}></Route>
         </Routes>
       </BrowserRouter>
     </div>

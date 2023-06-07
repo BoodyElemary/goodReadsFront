@@ -31,6 +31,9 @@ const editUserProfile = (user) => axios.put(`${back_Url}/users/profile`, user, {
 const deleteUserProfile = () => axios.delete(`${back_Url}/users/profile`, {headers:{Authorization: localStorage.getItem("token")}});
 const userLogin = (user) => axios.post(`${back_Url}/auth/user/login`, user);
 
+// FOR Admin
+const adminLogin = (admin) => axios.post(`${back_Url}/auth/admin/login`, admin);
+
 // const addProduct = (product) => axios.post(back_Url, product);
 // const editProduct = (productID, product) =>
 //   axios.put(`${back_Url}/${productID}`, product);
@@ -57,7 +60,8 @@ export const AppAPI = {
   getUserProfile,
   editUserProfile,
   deleteUserProfile,
-  userLogin
+  userLogin,
+  adminLogin
 
 
 };
