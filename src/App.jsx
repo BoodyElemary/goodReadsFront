@@ -11,6 +11,8 @@ import AdminHome from './components/pages/admin/AdminHome';
 import AllCategories from './components/pages/AllCategories';
 import SingleCategory from './components/pages/SingleCategory';
 import AdminLogin from './components/pages/admin/AdminLogin';
+import AllBooks from './components/pages/AllBooks';
+import AllAuthors from './components/pages/AllAuthors';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,6 +38,9 @@ function App() {
           <Route path="/categories/:id" element={<SingleCategory />} />
           <Route path="/:id" element={<SingleBook />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path='/books'   element={<AllBooks />}></Route>
+          <Route path='/authors'  element={<AllAuthors />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
