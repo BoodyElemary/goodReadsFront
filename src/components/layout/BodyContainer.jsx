@@ -1,16 +1,25 @@
-import React from "react";
-import SideNavbar from "./SideNavbar";
-import UserReadsTable from "./UserReadsTable";
-import PaginationComponent from "../shared/PaginationComponent";
+import { React, useState } from 'react';
+import SideNavbar from './SideNavbar';
+import UserReadsTable from './UserReadsTable';
+import PaginationComponent from '../shared/PaginationComponent';
 
 function BodyContainer() {
+  const [activeItem, setActiveItem] = useState('');
+
+  const handleNavbarItemClick = (item) => {
+    setActiveItem(item);
+  };
+  console.log(activeItem);
   return (
     <div>
       <div className="container-fluid min-vh-100 d-flex flex-column">
         <div className="row"></div>
         <div className="row flex-grow-1 mt-2">
           <div className="col-md-2  ">
-            <SideNavbar></SideNavbar>
+            <SideNavbar
+              activeItem={activeItem}
+              onNavbarItemClick={handleNavbarItemClick}
+            ></SideNavbar>
           </div>
           <div className="col-md-10 ">
             <div className="container">

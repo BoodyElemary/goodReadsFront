@@ -14,7 +14,7 @@ function Header() {
       <Container>
         <Navbar.Brand href="#home">
           <h1 className="mt-lg-2 mt-3 fw-bold  " style={{ color: '#087ea4' }}>
-            Good Reads{' '}
+            Good Reads
           </h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
