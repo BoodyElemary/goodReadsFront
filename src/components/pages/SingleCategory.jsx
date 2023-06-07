@@ -8,7 +8,7 @@ export default function SingleCategory() {
 
     let [category,setCategory]=useState({categoryName:"",books:[]});
     const { id } = useParams();
-
+    const backUrl='http://localhost:5000';
     const getCategoryById = async () => {
       let response = await AppAPI.getCategoryByID(id);
       setCategory(response.data.data);
@@ -30,7 +30,7 @@ export default function SingleCategory() {
   return (
     <div key={book._id} className="border border-primary rounded p-5 w-25 m-2">
         <div>
-            <img src={book.cover} alt="" />
+            {/* <img src={backUrl}{book.cover} alt="BookCover" /> */}
         </div>
       <h2>{book.bookName}</h2>
       <h2>{book.author.firstName}</h2>
