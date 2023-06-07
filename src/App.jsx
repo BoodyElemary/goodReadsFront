@@ -25,7 +25,6 @@ function App() {
           <Route path="/admin" Component={AdminHome}></Route>
           <Route path="/categories" Component={AllCategories}></Route>
           <Route path="categories/:id" element={<SingleCategory />} />
-          {/* <Route path="/categories/:id" Component={SingleCategory}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>
