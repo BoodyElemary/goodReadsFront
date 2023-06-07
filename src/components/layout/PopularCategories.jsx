@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Figure from 'react-bootstrap/Figure';
 
-
 export default function PopularCategories() {
 
 
