@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { AppAPI } from '../../API/axiosAPI';
 
 function Topbar() {
-  const location = useLocation();
   const [userData, setUserData] = useState({});
+  const location = useLocation();
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
