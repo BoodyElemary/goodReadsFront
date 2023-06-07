@@ -10,6 +10,7 @@ import Home from './components/pages/Home';
 import AdminHome from './components/pages/admin/AdminHome';
 import AllCategories from './components/pages/AllCategories';
 import SingleCategory from './components/pages/SingleCategory';
+import AdminLogin from './components/pages/admin/AdminLogin';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/admin" Component={AdminHome}></Route>
           <Route path="/categories" Component={AllCategories}></Route>
           <Route path="categories/:id" element={<SingleCategory />} />
+          <Route path="/admin/login" Component={AdminLogin}></Route>
         </Routes>
       </BrowserRouter>
     </div>

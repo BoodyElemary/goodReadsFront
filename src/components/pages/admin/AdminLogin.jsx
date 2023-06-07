@@ -6,9 +6,9 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import { useNavigate, useParams } from "react-router-dom";
-import { AppAPI } from "../../API/axiosAPI";
+import { AppAPI } from "../../../API/axiosAPI";
 
-export default function LogIn() {
+export default function AdminHome() {
 
     let navigate = useNavigate();
     const [validated, setValidated] = useState(false);
@@ -20,13 +20,13 @@ export default function LogIn() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const userLogin = async(submitData) => {
+    const adminLogin = async(submitData) => {
       try {
-        const response = await AppAPI.userLogin(submitData);
+        const response = await AppAPI.adminLogin(submitData);
         if(response.data.success){
           console.log(response.data)
-          localStorage.setItem("token", response.data.token)
-          navigate("/home")
+          localStorage.setItem("adminToken", response.data.token)
+          navigate("/admin")
         }
         else{
           setError(response.data.message)
@@ -43,7 +43,7 @@ export default function LogIn() {
       event.preventDefault();
 
       if (form.checkValidity()) {
-      userLogin(formData)
+      adminLogin(formData)
       console.log(formData)
       }
       setValidated(true);
@@ -61,21 +61,20 @@ export default function LogIn() {
             paddingLeft: "10px",
             height:"40px",
             borderRadius:"15px",
+            textAlign: "center",
 
         }
     }
 
   return (
-    <div className="pt-3" >
+    <div className=" container pt-3 w-50 mt-5" >
        <Form noValidate validated={validated} onSubmit={handleSubmit} style={style.border}>
-       <div style={style.header}>
+       <div style={style.header} className='mt-2 mb-4'> <legend>Admin Login</legend> </div>
 
-<legend>Login</legend>
-</div>
       <Row className="mb-3">
         <Row>
         {error && <p className="alert alert-danger text-center my-2" style={{margin:"auto", width:"95%"}}>{error}</p>}
-      <Form.Group as={Col} controlId="validationCustomUsername">
+      <Form.Group as={Col} controlId="validationCustomAdminEmail" className='mb-3'>
           <Form.Label>E-mail</Form.Label>
           <InputGroup hasValidation>
 
@@ -94,7 +93,7 @@ export default function LogIn() {
         </Row>
 
         <Row>
-        <Form.Group as={Col}  controlId="validationCustom01">
+        <Form.Group as={Col}  controlId="validationCustomAdminPassword" className='mb-3'>
           <Form.Label>Password</Form.Label>
           <Form.Control
             required
