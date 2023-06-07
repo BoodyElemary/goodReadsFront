@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-let back_Url = "http://localhost:5000";
+let back_Url = 'http://localhost:5000';
 
 // FOR BOOKS
 const getAllBooks = () => axios.get(`${back_Url}/books`);
