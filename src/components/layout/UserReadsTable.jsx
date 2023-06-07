@@ -1,24 +1,46 @@
 import { useEffect, React, useState } from 'react';
 import { AppAPI } from '../../API/axiosAPI';
 
-function UserReadsTable() {
+function UserReadsTable({ activeItem }) {
   const [userBooks, setUserBooks] = useState([]);
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const response = await AppAPI.getUserProfile();
-        // Handle the response data
         const { userBooks } = response.data.data;
         setUserBooks(userBooks);
       } catch (error) {
-        // Handle the error
         console.error(error);
       }
     };
 
     fetchUserProfile();
   }, []);
-  console.log(userBooks);
+
+  const handleChangeStatus = async (e, bookId) => {
+    const newStatus = e.target.value;
+    setUserBooks((prevUserBooks) =>
+      prevUserBooks.map((book) =>
+        book.book._id === bookId ? { ...book, status: newStatus } : book,
+      ),
+    );
+
+    try {
+      let data = { book: bookId, status: newStatus };
+      console.log(data);
+      await AppAPI.editBookStatus(data);
+      console.log('Book status updated successfully');
+    } catch (error) {
+      console.error('Error updating book status:', error);
+    }
+  };
+
+  const filteredBooks =
+    activeItem === 'all'
+      ? userBooks
+      : userBooks.filter((book) => book.status === activeItem);
+
   return (
     <table className="table">
       <thead>
@@ -32,10 +54,9 @@ function UserReadsTable() {
         </tr>
       </thead>
       <tbody>
-        {userBooks.map((book, index) => (
+        {filteredBooks.map((book, index) => (
           <tr key={book.book._id}>
-            {/* {console.log(book.book.cover)} */}
-            <th scope="row">{index}</th>
+            <th scope="row">{index + 1}</th>
             <td>
               <img
                 src={`${AppAPI.back_Url}/${book.book.cover}`}
@@ -47,14 +68,22 @@ function UserReadsTable() {
               <a href="#">{book.book.bookName}</a>
             </td>
             <td>
-              <a href="#">{`${book.book.author.firstName} ${book.book.author.lastName}`}</a>
+              <a href="#">
+                {`${book.book.author.firstName} ${book.book.author.lastName}`}
+              </a>
             </td>
-
             <td>
               <a href="#">{book.book.rate}</a>
             </td>
             <td>
-              <a href="#">{book.status}</a>
+              <select
+                value={book.status}
+                onChange={(e) => handleChangeStatus(e, book.book._id)}
+              >
+                <option value="read">Read</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want to Read</option>
+              </select>
             </td>
           </tr>
         ))}

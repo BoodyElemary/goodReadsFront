@@ -72,6 +72,11 @@ const deleteUserProfile = () =>
   });
 const userLogin = (user) => axios.post(`${back_Url}/auth/user/login`, user);
 
+const editBookStatus = (data) =>
+  axios.put(`${back_Url}/users/editBookStatus`, data, {
+    headers: { Authorization: localStorage.getItem('token') },
+  });
+
 // FOR Admin
 const adminLogin = (admin) => axios.post(`${back_Url}/auth/admin/login`, admin);
 
@@ -103,5 +108,6 @@ export const AppAPI = {
   deleteUserProfile,
   userLogin,
   adminLogin,
+  editBookStatus,
   back_Url,
 };

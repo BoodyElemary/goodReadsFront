@@ -4,7 +4,7 @@ import UserReadsTable from './UserReadsTable';
 import PaginationComponent from '../shared/PaginationComponent';
 
 function BodyContainer() {
-  const [activeItem, setActiveItem] = useState('');
+  const [activeItem, setActiveItem] = useState('all');
 
   const handleNavbarItemClick = (item) => {
     setActiveItem(item);
@@ -24,10 +24,11 @@ function BodyContainer() {
           <div className="col-md-10 ">
             <div className="container">
               <fieldset className="border rounded-3">
-                <legend className="float-none w-auto px-3">
-                  Currently Reading
-                </legend>
-                <UserReadsTable></UserReadsTable>
+                <legend className="float-none w-auto px-3">{activeItem}</legend>
+                <UserReadsTable
+                  activeItem={activeItem}
+                  onNavbarItemClick={handleNavbarItemClick}
+                ></UserReadsTable>
                 <div className="d-flex justify-content-center align-items-center">
                   <PaginationComponent></PaginationComponent>
                 </div>
