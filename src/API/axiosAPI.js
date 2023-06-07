@@ -19,9 +19,9 @@ const deleteAuthorByID = (AuthorID) => axios.delete(`${back_Url}/authors/${Autho
 // FOR CATEGORIES
 const getAllCategories = () => axios.get(`${back_Url}/categories`);
 const addCategory = (catigory) => axios.get(`${back_Url}/categories`, catigory, {headers:{Authorization: localStorage.getItem("adminToken")}});
-const getCategoryByID = (CategoryID) => axios.get(`${back_Url}/Categoriess/${CategoryID}`);
-const editCategoryByID = (CategoryID, editData) => axios.put(`${back_Url}/Categoriess/${CategoryID}`, editData, {headers:{Authorization: localStorage.getItem("adminToken")}});
-const deleteCategoryByID = (CategoryID) => axios.delete(`${back_Url}/Categoriess/${CategoryID}`, {headers:{Authorization: localStorage.getItem("adminToken")}});
+const getCategoryByID = (CategoryID) => axios.get(`${back_Url}/Categories/${CategoryID}`);
+const editCategoryByID = (CategoryID, editData) => axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {headers:{Authorization: localStorage.getItem("adminToken")}});
+const deleteCategoryByID = (CategoryID) => axios.delete(`${back_Url}/Categories/${CategoryID}`, {headers:{Authorization: localStorage.getItem("adminToken")}});
 
 // FOR USERS
 const getAllUsers = () => axios.get(`${back_Url}/users`, {headers:{Authorization: localStorage.getItem("adminToken")}});

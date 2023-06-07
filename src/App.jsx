@@ -8,6 +8,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SingleBook from './components/pages/SingleBook';
 import Home from './components/pages/Home';
 import AdminHome from './components/pages/admin/AdminHome';
+import AllCategories from './components/pages/AllCategories';
+import SingleCategory from './components/pages/SingleCategory';
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
           <Route path="/home" Component={UserHome}></Route>
           <Route path="/book" Component={SingleBook}></Route>
           <Route path="/admin" Component={AdminHome}></Route>
+          <Route path="/categories" Component={AllCategories}></Route>
+          <Route path="categories/:id" element={<SingleCategory />} />
+          {/* <Route path="/categories/:id" Component={SingleCategory}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>
