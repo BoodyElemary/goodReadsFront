@@ -19,7 +19,7 @@ import BookForm from './components/pages/admin/BookForm';
 import AdminAuthors from './components/pages/admin/AdminAuthors';
 import AuthorForm from './components/pages/admin/AuthorForm';
 import AllBooks from './components/pages/AllBooks';
-import   from './components/pages/AllAuthors';
+import AllAuthors from './components/pages/AllAuthors';
 import Protected from './components/Protected';
 
 function App() {
@@ -47,88 +47,28 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/home"
-            element={
-              <Protected isLoggedIn={isLoggedIn}>
-                <UserHome />
-              </Protected>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <Protected isLoggedIn={isLoggedIn}>
-                <AdminCategories />
-              </Protected>
-            }
-          />
-          <Route
-            path="/categories"
-            element={
-              <Protected isLoggedIn={isLoggedIn}>
-                <AllCategories />
-              </Protected>
-            }
-          />
-          <Route
-            path="/categories/:id"
-            element={
-              <Protected isLoggedIn={isLoggedIn}>
-                <SingleCategory />
-              </Protected>
-            }
-          />
-          <Route
-            path="/books/:id"
-            element={
-              <Protected isLoggedIn={isLoggedIn}>
-                <SingleBook />
-              </Protected>
-            }
-          />
-          <Route
-            path="/admin/books"
-            Component={
-              <Protected isLoggedIn={isAdminLoggedIn}>
-                <AdminBooks />
-              </Protected>
-            }
-          ></Route>
-          <Route
-            path="/admin/books/:id/edit"
-            Component={
-              <Protected isLoggedIn={isAdminLoggedIn}>
-                <BookForm />
-              </Protected>
-            }
-          ></Route>
-          <Route path='/books' element={<AllBooks />}></Route>
-          <Route path='/authors' element={<AllAuthors />}></Route>
-          <Route
-            path="/admin/authors"
-            Component={
-              <Protected isLoggedIn={isAdminLoggedIn}>
-                <AdminAuthors />
-              </Protected>
-            }
-          ></Route>
+          <Route path="/home" element={<UserHome />} />
+          <Route path="/admin" element={<AdminCategories />} />
+          <Route path="/categories" element={<AllCategories />} />
+          <Route path="/categories/:id" element={<SingleCategory />} />
+          <Route path="/books/:id" element={<SingleBook />} />
+          <Route path="/books" element={<AllBooks />}></Route>
+          <Route path="/authors" element={<AllAuthors />}></Route>
+          <Route path="/admin/books" Component={<AdminBooks />}></Route>
+          <Route path="/admin/books/:id/edit" Component={<BookForm />}></Route>
+          <Route path="/admin/authors" Component={<AdminAuthors />}></Route>
           <Route
             path="/admin/authors/:id/edit"
-            Component={
-              <Protected isLoggedIn={isAdminLoggedIn}>
-                <AuthorForm />
-              </Protected>
-            }
+            Component={<AuthorForm />}
+          ></Route>
+          <Route path="/admin/categories" Component={AdminCategories}></Route>
+          <Route
+            path="/admin/categories/:id/edit"
+            Component={CategoryForm}
           ></Route>
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="*" element={<NotFoundPage />} /> {/* 404 route */}
         </Routes>
-        <Route path="/admin/categories" Component={AdminCategories}></Route>
-        <Route
-          path="/admin/categories/:id/edit"
-          Component={CategoryForm}
-        ></Route>
       </BrowserRouter>
     </div>
   );

@@ -37,10 +37,20 @@ const deleteAuthorByID = (AuthorID) =>
 
 // FOR CATEGORIES
 const getAllCategories = () => axios.get(`${back_Url}/categories`);
-const addCategory = (catigory) => axios.post(`${back_Url}/categories`, catigory, {headers:{Authorization: localStorage.getItem("adminToken")}});
-const getCategoryByID = (CategoryID) => axios.get(`${back_Url}/Categories/${CategoryID}`);
-const editCategoryByID = (CategoryID, editData) => axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {headers:{Authorization: localStorage.getItem("adminToken")}});
-const deleteCategoryByID = (CategoryID) => axios.delete(`${back_Url}/Categories/${CategoryID}`, {headers:{Authorization: localStorage.getItem("adminToken")}});
+const addCategory = (catigory) =>
+  axios.post(`${back_Url}/categories`, catigory, {
+    headers: { Authorization: localStorage.getItem('adminToken') },
+  });
+const getCategoryByID = (CategoryID) =>
+  axios.get(`${back_Url}/Categories/${CategoryID}`);
+const editCategoryByID = (CategoryID, editData) =>
+  axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {
+    headers: { Authorization: localStorage.getItem('adminToken') },
+  });
+const deleteCategoryByID = (CategoryID) =>
+  axios.delete(`${back_Url}/Categories/${CategoryID}`, {
+    headers: { Authorization: localStorage.getItem('adminToken') },
+  });
 
 // FOR USERS
 const getAllUsers = () =>
@@ -67,15 +77,18 @@ const editBookStatus = (data) =>
     headers: { Authorization: localStorage.getItem('token') },
   });
 
-const removeBookFromUserList = (id) =>
-  axios.delete(`${back_Url}/users/removeBook`, id, {
+const removeBookFromUserList = (bookId) =>
+  axios.delete(`${back_Url}/users/removeBook`, {
     headers: { Authorization: localStorage.getItem('token') },
+    data: {
+      book: bookId,
+    },
   });
 
 // FOR Admin
 const adminLogin = (admin) => axios.post(`${back_Url}/auth/admin/login`, admin);
 
-const getPopular = () => axios.get(`${back_Url}/books/mostPopular`)
+const getPopular = () => axios.get(`${back_Url}/books/mostPopular`);
 export const AppAPI = {
   getAllBooks,
   addBook,

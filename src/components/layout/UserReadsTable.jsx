@@ -18,6 +18,7 @@ function UserReadsTable({ activeItem }) {
     fetchUserProfile();
   }, []);
 
+  // change book status
   const handleChangeStatus = async (e, bookId) => {
     const newStatus = e.target.value;
     setUserBooks((prevUserBooks) =>
@@ -36,12 +37,15 @@ function UserReadsTable({ activeItem }) {
     }
   };
 
+  //delete book form the list
+
   const handleDeleteBook = async (bookId) => {
     setUserBooks((prevUserBooks) =>
       prevUserBooks.filter((book) => book.book?._id !== bookId),
     );
 
     try {
+      console.log(bookId);
       await AppAPI.removeBookFromUserList(bookId);
       console.log('Book deleted successfully');
     } catch (error) {
