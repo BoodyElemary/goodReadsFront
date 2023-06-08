@@ -37,10 +37,20 @@ const deleteAuthorByID = (AuthorID) =>
 
 // FOR CATEGORIES
 const getAllCategories = () => axios.get(`${back_Url}/categories`);
-const addCategory = (catigory) => axios.get(`${back_Url}/categories`, catigory, {headers:{Authorization: localStorage.getItem("adminToken")}});
-const getCategoryByID = (CategoryID) => axios.get(`${back_Url}/Categories/${CategoryID}`);
-const editCategoryByID = (CategoryID, editData) => axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {headers:{Authorization: localStorage.getItem("adminToken")}});
-const deleteCategoryByID = (CategoryID) => axios.delete(`${back_Url}/Categories/${CategoryID}`, {headers:{Authorization: localStorage.getItem("adminToken")}});
+const addCategory = (catigory) =>
+  axios.get(`${back_Url}/categories`, catigory, {
+    headers: { Authorization: localStorage.getItem('adminToken') },
+  });
+const getCategoryByID = (CategoryID) =>
+  axios.get(`${back_Url}/Categories/${CategoryID}`);
+const editCategoryByID = (CategoryID, editData) =>
+  axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {
+    headers: { Authorization: localStorage.getItem('adminToken') },
+  });
+const deleteCategoryByID = (CategoryID) =>
+  axios.delete(`${back_Url}/Categories/${CategoryID}`, {
+    headers: { Authorization: localStorage.getItem('adminToken') },
+  });
 
 // FOR USERS
 const getAllUsers = () =>
@@ -64,6 +74,11 @@ const userLogin = (user) => axios.post(`${back_Url}/auth/user/login`, user);
 
 const editBookStatus = (data) =>
   axios.put(`${back_Url}/users/editBookStatus`, data, {
+    headers: { Authorization: localStorage.getItem('token') },
+  });
+
+const removeBookFromUserList = (id) =>
+  axios.delete(`${back_Url}/users/removeBook`, id, {
     headers: { Authorization: localStorage.getItem('token') },
   });
 
@@ -99,5 +114,6 @@ export const AppAPI = {
   userLogin,
   adminLogin,
   editBookStatus,
+  removeBookFromUserList,
   back_Url,
 };
