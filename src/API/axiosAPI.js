@@ -37,20 +37,10 @@ const deleteAuthorByID = (AuthorID) =>
 
 // FOR CATEGORIES
 const getAllCategories = () => axios.get(`${back_Url}/categories`);
-const addCategory = (catigory) =>
-  axios.get(`${back_Url}/categories`, catigory, {
-    headers: { Authorization: localStorage.getItem('adminToken') },
-  });
-const getCategoryByID = (CategoryID) =>
-  axios.get(`${back_Url}/Categories/${CategoryID}`);
-const editCategoryByID = (CategoryID, editData) =>
-  axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {
-    headers: { Authorization: localStorage.getItem('adminToken') },
-  });
-const deleteCategoryByID = (CategoryID) =>
-  axios.delete(`${back_Url}/Categories/${CategoryID}`, {
-    headers: { Authorization: localStorage.getItem('adminToken') },
-  });
+const addCategory = (catigory) => axios.post(`${back_Url}/categories`, catigory, {headers:{Authorization: localStorage.getItem("adminToken")}});
+const getCategoryByID = (CategoryID) => axios.get(`${back_Url}/Categories/${CategoryID}`);
+const editCategoryByID = (CategoryID, editData) => axios.put(`${back_Url}/Categories/${CategoryID}`, editData, {headers:{Authorization: localStorage.getItem("adminToken")}});
+const deleteCategoryByID = (CategoryID) => axios.delete(`${back_Url}/Categories/${CategoryID}`, {headers:{Authorization: localStorage.getItem("adminToken")}});
 
 // FOR USERS
 const getAllUsers = () =>
@@ -75,11 +65,7 @@ const userLogin = (user) => axios.post(`${back_Url}/auth/user/login`, user);
 // FOR Admin
 const adminLogin = (admin) => axios.post(`${back_Url}/auth/admin/login`, admin);
 
-// const addProduct = (product) => axios.post(back_Url, product);
-// const editProduct = (productID, product) =>
-//   axios.put(`${back_Url}/${productID}`, product);
-// const deleteProduct = (productID) => axios.delete(`${back_Url}/${productID}`);
-
+const getPopular = () => axios.get(`${back_Url}/books/mostPopular`)
 export const AppAPI = {
   getAllBooks,
   addBook,
@@ -103,5 +89,6 @@ export const AppAPI = {
   deleteUserProfile,
   userLogin,
   adminLogin,
+  getPopular,
   back_Url,
 };
