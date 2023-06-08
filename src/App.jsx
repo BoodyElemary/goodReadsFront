@@ -11,6 +11,7 @@ import AdminHome from './components/pages/admin/AdminHome';
 import AllCategories from './components/pages/AllCategories';
 import SingleCategory from './components/pages/SingleCategory';
 import AdminLogin from './components/pages/admin/AdminLogin';
+import NotFoundPage from './components/pages/NotFoundPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,8 +35,9 @@ function App() {
           <Route path="/admin" element={<AdminHome />} />
           <Route path="/categories" element={<AllCategories />} />
           <Route path="/categories/:id" element={<SingleCategory />} />
-          <Route path="/:id" element={<SingleBook />} />
+          <Route path="/books/:id" element={<SingleBook />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="*" element={<NotFoundPage />} /> {/* 404 route */}
         </Routes>
       </BrowserRouter>
     </div>

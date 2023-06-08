@@ -55,7 +55,7 @@ function UserReadsTable({ activeItem }) {
       </thead>
       <tbody>
         {filteredBooks.map((book, index) => (
-          <tr key={book.book._id}>
+          <tr key={book.book._id} className="text-start align-items-center">
             <th scope="row">{index + 1}</th>
             <td>
               <img
@@ -77,6 +77,7 @@ function UserReadsTable({ activeItem }) {
             </td>
             <td>
               <select
+                className="form-select"
                 value={book.status}
                 onChange={(e) => handleChangeStatus(e, book.book._id)}
               >
