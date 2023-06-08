@@ -85,6 +85,17 @@ const removeBookFromUserList = (bookId) =>
     },
   });
 
+const addReview = (bookId, review) =>
+  axios.post(
+    `${back_Url}/books/${bookId}/addReview`,
+    {
+      review: review,
+    },
+    {
+      headers: { Authorization: localStorage.getItem('token') },
+    },
+  );
+
 // FOR Admin
 const adminLogin = (admin) => axios.post(`${back_Url}/auth/admin/login`, admin);
 
@@ -115,5 +126,6 @@ export const AppAPI = {
   editBookStatus,
   removeBookFromUserList,
   getPopular,
+  addReview,
   back_Url,
 };
