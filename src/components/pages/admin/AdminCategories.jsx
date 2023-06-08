@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AppAPI } from "../../../API/axiosAPI";
 function AdminCategories() {
   let navigate = useNavigate();
@@ -23,18 +23,22 @@ function AdminCategories() {
       console.log(error.response)
     }
   }
-  const viewCategory = (categoryId) => {
-    navigate(`/admin/categories/${categoryId}`);
-  };
+
   const editCategory = (categoryId) => {
     navigate(`/admin/categories/${categoryId}/edit`);
   };
 
   const deleteCategory = async (categoryId) => {
-    let response = await AppAPI.deleteCategoryByID(categoryId);
-    let filteredList = categories.filter((category) => category._id != categoryId);
-    setCategories(filteredList);
-    setSuccess(response.data.message)
+    try{
+      let response = await AppAPI.deleteCategoryByID(categoryId);
+      let filteredList = categories.filter((category) => category._id != categoryId);
+      setCategories(filteredList);
+      setSuccess(response.data.message)
+    }
+    catch(error){
+      console.log(error);
+      setError(error.response.data.message)
+    }
   };
 
   const goToAddCategory = () => {
@@ -48,6 +52,7 @@ function AdminCategories() {
     <section className="container">
       <h1 className="mt-5">All Categories</h1>
       {success && <p className="alert alert-success text-center my-2" style={{margin:"auto", width:"95%"}}>{success}</p>}
+      {error && <p className="alert alert-danger text-center my-2" style={{margin:"auto", width:"95%"}}>{error}</p>}
       <i class="bi bi-patch-plus text-end d-block "
         style={{fontSize:"25px"}}
         onClick={goToAddCategory}>
