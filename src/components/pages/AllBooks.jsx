@@ -7,8 +7,8 @@ function AllBooks() {
     let[books,setBooks]=useState([]);
 
     const viewBook = (bookID) => {
-        // navigate(`/books/${bookID}`);
-                navigate(`/home`);
+        navigate(`/books/${bookID}`);
+                // navigate(`/home`);
 
       };
       const viewAuthor = (authorID) => {

@@ -25,7 +25,8 @@ export default function SingleCategory() {
     <h1 className='d-flex' > {category.categoryName}</h1>
     </div>
  <div className="text-center my-1  d-flex flex-wrap justify-content-around gap-3 overflow-hidden " style={{ padding:"10px" ,position:"relative" }} >
-       {category.books.map((book, index) => {
+       {category.books.map((book, index) => 
+       {
   return (
   
 
