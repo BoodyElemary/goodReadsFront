@@ -87,7 +87,7 @@ export default function LogIn() {
               onChange={operationHandler}
             />
             <Form.Control.Feedback type="invalid">
-              Please enter invalid E-mail.
+              Please enter valid E-mail.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
@@ -105,7 +105,7 @@ export default function LogIn() {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
-              Please enter invalid Password.
+              Please enter valid Password.
             </Form.Control.Feedback>
         </Form.Group>
         </Row>

@@ -22,7 +22,7 @@ function Topbar() {
 
     fetchUserProfile();
   }, []);
-  if (location.pathname === '/') {
+  if (location.pathname === '/' || location.pathname.includes('admin')) {
     return null;
   } else {
     return (
