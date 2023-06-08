@@ -22,7 +22,7 @@ export default function PopularAuthors() {
           {!Populars? <p className="alert alert-success text-center my-2" style={{margin:"auto", width:"95%"}} >There aren't Popular Authors Yet</p>: ''}
           {
             Populars.map((item, index)=>(
-              <Card.Img style={{ width: '7rem' ,margin:"5px" }}  src= { AppAPI.back_Url + '/' + item?.authors?.image}  alt={"Book Cover"} />
+              <Card.Img style={{ width: '7rem' ,margin:"5px" }}  src= { AppAPI.back_Url + '/' + item?.authors?.image}  alt={"Author Image"} />
             ))
           }
         </div>
