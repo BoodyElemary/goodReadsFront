@@ -11,11 +11,13 @@ function SingleBook() {
     author: { firstName: '', lastName: '' },
     user_review: [{ review: '', userID: { firstName: '', lastName: '' } }],
   });
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(1);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  let userReviews = [];
   const [reviewText, setReviewText] = useState('');
   const [isReviewTextValid, setIsReviewTextValid] = useState(true);
+  const [bookRate, setBookRate] = useState(0);
+  const [userId, setUserId] = useState('');
+  const [isAdded, setIsAdded] = useState(false);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -57,9 +59,11 @@ function SingleBook() {
         },
       };
       console.log(id);
-      const response = await AppAPI.addReview(id, reviewText);
-      const updatedSingleBook = { ...singleBook };
-      updatedSingleBook.user_review.push(response.data.data);
+      await AppAPI.addReview(id, reviewText);
+
+      // Refetch the book data to include the latest comments
+      const response = await AppAPI.getBookByID(id);
+      const updatedSingleBook = { ...response.data.data };
       setSingleBook(updatedSingleBook);
 
       setReviewText('');
@@ -70,11 +74,34 @@ function SingleBook() {
   };
 
   useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await AppAPI.getUserProfile();
+        const { userBooks } = response.data.data;
+        setUserId(response.data.data._id);
+        // console.log(userBooks);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserProfile();
+
     const fetchBookData = async () => {
       try {
         const response = await AppAPI.getBookByID(id);
         const singleBook = { ...response.data.data };
         setSingleBook(singleBook);
+        console.log(singleBook.user_rate);
+        const totalRatings = singleBook.user_rate.length;
+        const totalRate = singleBook.user_rate.reduce(
+          (sum, rating) => sum + rating.rate,
+          0,
+        );
+        const averageRate = totalRate / totalRatings;
+        // console.log(averageRate);
+
+        setBookRate(averageRate);
       } catch (error) {
         console.error(error);
       }
@@ -92,6 +119,8 @@ function SingleBook() {
   const onPointerEnter = () => console.log('Enter');
   const onPointerLeave = () => console.log('Leave');
   const onPointerMove = (value, index) => console.log(value, index);
+  // console.log(singleBook);
+  // console.log(userId);
 
   return (
     <div className="container">
@@ -135,7 +164,7 @@ function SingleBook() {
             </h5>
             <Rating
               readonly
-              initialValue={4}
+              initialValue={bookRate}
               /* Available Props */
             />
           </div>
@@ -193,11 +222,6 @@ function SingleBook() {
                     <h5>
                       {review.userID?.firstName} {review.userID?.lastName}
                     </h5>
-                    <Rating
-                      readonly
-                      initialValue={3}
-                      /* Available Props */
-                    />
                   </div>
                   <p>{review.review}</p>
                   <hr />

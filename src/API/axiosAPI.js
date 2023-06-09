@@ -95,6 +95,16 @@ const addReview = (bookId, review) =>
       headers: { Authorization: localStorage.getItem('token') },
     },
   );
+const editRate = (bookId, reviewId, rate) =>
+  axios.put(
+    `${back_Url}/books/${bookId}/editRate/${reviewId}`,
+    {
+      rate: rate,
+    },
+    {
+      headers: { Authorization: localStorage.getItem('token') },
+    },
+  );
 
 // FOR Admin
 const adminLogin = (admin) => axios.post(`${back_Url}/auth/admin/login`, admin);
@@ -127,5 +137,6 @@ export const AppAPI = {
   removeBookFromUserList,
   getPopular,
   addReview,
+  editRate,
   back_Url,
 };
